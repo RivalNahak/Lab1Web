@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Halaman 2</title>
+
+    <style>
+        /* ===== Warna & font (sama dengan index-menarik.html) ===== */
+        :root {
+            --biru: #0c2a8a;
+            --biru-tua: #071a5c;
+            --tinta: #10142e;
+            --kertas: #f4f6fc;
+            --putih: #ffffff;
+            --kuning: #ffd23f;
+            --garis: #d3daf0;
+            --serif: Georgia, "Times New Roman", serif;
+            --sans: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+
+        @media (prefers-reduced-motion: no-preference) {
+            html { scroll-behavior: smooth; }
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--sans);
+            font-size: 1.0625rem;
+            line-height: 1.7;
+            color: var(--tinta);
+            background: var(--kertas);
+        }
+
+        a:focus-visible {
+            outline: 3px solid var(--kuning);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        /* ===== Navigasi ===== */
+        .atas {
+            background: var(--biru-tua);
+            padding: 0.9rem 1.5rem;
+        }
+        .atas nav {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 1.6rem;
+        }
+        .atas a {
+            color: var(--putih);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.2rem 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+        .atas a:hover { border-bottom-color: var(--kuning); }
+        .atas a.aktif { border-bottom-color: var(--kuning); }
+
+        /* ===== Bagian pembuka ===== */
+        .hero {
+            background: var(--biru);
+            color: var(--putih);
+            padding: 4rem 1.5rem 4.5rem;
+        }
+        .hero-isi {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(2.4rem, 6vw, 4.4rem);
+            line-height: 1.08;
+            margin: 0 0 1.4rem;
+            letter-spacing: -0.01em;
+        }
+        .hero p {
+            max-width: 54ch;
+            margin: 0;
+            color: #e3e8ff;
+        }
+        .hero strong { color: var(--putih); }
+
+        /* ===== Materi ===== */
+        main {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem 0;
+        }
+        h2 {
+            font-family: var(--serif);
+            font-size: clamp(1.7rem, 3.5vw, 2.3rem);
+            line-height: 1.2;
+            margin: 0 0 1.4rem;
+            color: var(--biru-tua);
+        }
+
+        /* Setiap topik dibuat satu baris dengan garis kuning di tepi */
+        .materi {
+            list-style: none;
+            margin: 0 0 2rem;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem 1.5rem;
+        }
+        .materi li {
+            background: var(--putih);
+            border-left: 5px solid var(--kuning);
+            border-bottom: 1px solid var(--garis);
+            padding: 1rem 1.2rem;
+            font-weight: 600;
+        }
+
+        .tautan p { margin: 0 0 0.6rem; }
+        .tautan a {
+            color: var(--biru);
+            font-weight: 600;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            margin-top: 5rem;
+            background: var(--biru-tua);
+            color: #cfd7ff;
+            padding: 2.5rem 1.5rem;
+        }
+        footer div { max-width: 1080px; margin: 0 auto; }
+        footer hr { border: 0; border-top: 1px solid #2b3c8a; margin: 0 0 1.4rem; }
+        footer p { margin: 0; }
+        footer a { color: var(--kuning); font-weight: 600; }
+
+        /* ===== Layar kecil (HP) ===== */
+        @media (max-width: 760px) {
+            .hero { padding: 2.5rem 1.25rem 3rem; }
+            main { padding-top: 3rem; }
+            .materi { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigasi halaman -->
+    <header class="atas">
+        <nav>
+            <a href="index-menarik.html">Dasar HTML</a>
+            <a href="halaman2-menarik.html" class="aktif">Halaman 2</a>
+            <a href="https://www.google.com">Website Eksternal</a>
+        </nav>
+    </header>
+
+    <!-- Bagian pembuka -->
+    <div class="hero">
+        <div class="hero-isi">
+            <h1>Halaman 2</h1>
+            <p>
+                Ini adalah <strong>halaman kedua</strong> yang dibuat untuk menguji
+                hyperlink internal pada Praktikum 1 HTML Dasar.
+            </p>
+        </div>
+    </div>
+
+    <main>
+
+        <!-- Daftar materi -->
+        <h2 id="materi">Materi HTML</h2>
+        <ul class="materi">
+            <li>Struktur dokumen</li>
+            <li>Tag dan atribut</li>
+            <li>Heading dan paragraf</li>
+            <li>Hyperlink, gambar, dan list</li>
+        </ul>
+
+        <!-- Tautan -->
+        <div class="tautan">
+            <p><a href="#materi">Menuju ke Materi HTML</a></p>
+            <p><a href="index-menarik.html">Kembali ke Beranda</a></p>
+        </div>
+
+    </main>
+
+    <footer>
+        <div>
+            <hr>
+            <p>Praktikum 1 Pemrograman Web. <a href="index-menarik.html">Kembali ke Beranda</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

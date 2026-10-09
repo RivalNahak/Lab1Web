@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Praktikum HTML Dasar</title>
+
+    <style>
+        /* ===== Warna & font (diambil dari warna latar foto: biru tua) ===== */
+        :root {
+            --biru: #0c2a8a;
+            --biru-tua: #071a5c;
+            --tinta: #10142e;
+            --kertas: #f4f6fc;
+            --putih: #ffffff;
+            --kuning: #ffd23f;
+            --garis: #d3daf0;
+            --abu: #4b5278;
+            --serif: Georgia, "Times New Roman", serif;
+            --sans: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+
+        @media (prefers-reduced-motion: no-preference) {
+            html { scroll-behavior: smooth; }
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--sans);
+            font-size: 1.0625rem;
+            line-height: 1.7;
+            color: var(--tinta);
+            background: var(--kertas);
+        }
+
+        a:focus-visible {
+            outline: 3px solid var(--kuning);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        /* ===== Navigasi ===== */
+        .atas {
+            background: var(--biru-tua);
+            padding: 0.9rem 1.5rem;
+        }
+        .atas nav {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 1.6rem;
+        }
+        .atas a {
+            color: var(--putih);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.2rem 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+        .atas a:hover { border-bottom-color: var(--kuning); }
+
+        /* ===== Hero ===== */
+        .hero {
+            background: var(--biru);
+            color: var(--putih);
+            padding: 4rem 1.5rem 5rem;
+        }
+        .hero-isi {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(2.4rem, 6vw, 4.4rem);
+            line-height: 1.08;
+            margin: 0 0 1.4rem;
+            letter-spacing: -0.01em;
+        }
+        .hero p { max-width: 54ch; color: #e3e8ff; margin: 0 0 1rem; }
+        .hero b, .hero strong { color: var(--putih); }
+
+        /* Foto berbentuk lengkung: bagian paling diingat di halaman ini */
+        .foto {
+            width: min(100%, 300px);
+            justify-self: center;
+        }
+        .bingkai { position: relative; }
+        .bingkai::before {
+            content: "";
+            position: absolute;
+            inset: 16px -16px -16px 16px;
+            border: 3px solid var(--kuning);
+            border-radius: 999px 999px 28px 28px;
+        }
+        .bingkai img {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 999px 999px 28px 28px;
+            background: var(--biru-tua);
+        }
+        .foto h3 {
+            position: relative;
+            margin: 2rem 0 0;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--kuning);
+            text-align: center;
+        }
+
+        /* ===== Bagian umum ===== */
+        main section {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem 0;
+        }
+        h2 {
+            font-family: var(--serif);
+            font-size: clamp(1.7rem, 3.5vw, 2.3rem);
+            line-height: 1.2;
+            margin: 0 0 1.2rem;
+            color: var(--biru-tua);
+        }
+        h3 {
+            font-size: 1.2rem;
+            margin: 0 0 0.8rem;
+            color: var(--biru);
+        }
+        .teks p { max-width: 62ch; margin: 0 0 1rem; }
+
+        /* ===== Eksperimen format teks: tiap baris punya garis tepi ===== */
+        .contoh p {
+            margin: 0;
+            padding: 0.85rem 1rem;
+            border-left: 5px solid var(--kuning);
+            background: var(--putih);
+            border-bottom: 1px solid var(--garis);
+            max-width: 62ch;
+        }
+        mark { background: var(--kuning); padding: 0 0.25em; border-radius: 3px; }
+        ins { text-decoration-color: var(--biru); text-decoration-thickness: 2px; }
+
+        /* ===== Profil ===== */
+        .profil-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        .data p {
+            margin: 0 0 0.7rem;
+            padding-bottom: 0.7rem;
+            border-bottom: 1px solid var(--garis);
+        }
+
+        /* Daftar keahlian jadi label berbentuk pil */
+        .keahlian {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+        .keahlian li {
+            background: var(--biru);
+            color: var(--putih);
+            font-weight: 600;
+            padding: 0.4rem 1.1rem;
+            border-radius: 999px;
+        }
+
+        /* Daftar bernomor: ini memang urutan, jadi nomornya dibuat menonjol */
+        .urutan {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            counter-reset: langkah;
+        }
+        .urutan li {
+            counter-increment: langkah;
+            display: flex;
+            gap: 1rem;
+            align-items: baseline;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid var(--garis);
+        }
+        .urutan li::before {
+            content: counter(langkah);
+            font-family: var(--serif);
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--biru);
+            min-width: 1.6rem;
+        }
+
+        .dua-daftar {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            margin-top: 5rem;
+            background: var(--biru-tua);
+            color: #cfd7ff;
+            padding: 2.5rem 1.5rem;
+        }
+        footer div { max-width: 1080px; margin: 0 auto; }
+        footer hr { border: 0; border-top: 1px solid #2b3c8a; margin: 0 0 1.4rem; }
+        footer p { margin: 0; }
+        footer a { color: var(--kuning); font-weight: 600; }
+
+        /* ===== Layar kecil (HP) ===== */
+        @media (max-width: 760px) {
+            .hero { padding: 2.5rem 1.25rem 4rem; }
+            .hero-isi, .profil-grid, .dua-daftar { grid-template-columns: 1fr; gap: 2.2rem; }
+            .foto { margin-top: 0.5rem; }
+            main section { padding-top: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigasi halaman -->
+    <header class="atas">
+        <nav>
+            <a href="index.html">Dasar HTML</a>
+            <a href="halaman2.html">Halaman 2</a>
+            <a href="#profil">Profil</a>
+            <a href="https://www.google.com">Website Eksternal</a>
+        </nav>
+    </header>
+
+    <!-- Bagian pembuka: judul, paragraf, dan foto -->
+    <div class="hero">
+        <div class="hero-isi">
+            <div>
+                <!-- Judul utama -->
+                <h1>Belajar Dasar HTML</h1>
+
+                <p>
+                    Kami sedang belajar <b>HTML dasar</b> pada mata kuliah
+                    <i>Pemrograman Web</i>.
+                    Praktikum ini digunakan untuk mengenal tag-tag dasar HTML.
+                </p>
+                <p>
+                    Air ditulis sebagai H<sub>2</sub>O dan luas dapat ditulis
+                    sebagai x<sup>2</sup>.
+                </p>
+            </div>
+
+            <!-- Gambar -->
+            <div class="foto">
+                    <img src="images/profil.jpg"
+                         width="200"
+                         alt="Foto profil mahasiswa"
+                         title="Foto Profil Mahasiswa">
+                </div>
+                <h3>Foto Profil</h3>
+            </div>
+        </div>
+    </div>
+
+    <main>
+
+        <!-- Subjudul dan paragraf -->
+        <section class="teks">
+            <h2>Paragraf pada HTML</h2>
+            <p>
+                HTML merupakan <strong>bahasa markup</strong> untuk menyusun
+                struktur halaman web.
+                Browser akan menampilkan hasil interpretasi dari dokumen HTML.
+            </p>
+        </section>
+
+        <!-- Eksperimen tag pemformatan teks -->
+        <section class="contoh">
+            <h2>Eksperimen Pemformatan Teks</h2>
+            <p>Teks <em>ini ditekankan (em)</em>.</p>
+            <p>Teks <mark>ini diberi penanda (mark)</mark>.</p>
+            <p>Teks <small>ini berukuran lebih kecil (small)</small>.</p>
+            <p>Harga <del>Rp100.000</del> <ins>Rp80.000</ins>.</p>
+        </section>
+
+        <!-- Bagian Profil Mahasiswa -->
+        <section id="profil">
+            <h2>Profil Mahasiswa</h2>
+
+            <div class="profil-grid">
+                <div class="data">
+                    <h3>Data Diri</h3>
+                    <p>Nama: Nama Mahasiswa</p>
+                    <p>Program Studi: Teknik Informatika</p>
+                    <p>
+                        Saya sedang mempelajari dasar-dasar pengembangan
+                        aplikasi web menggunakan HTML.
+                    </p>
+                </div>
+
+                <!-- Bagian Keahlian -->
+                <div>
+                    <h3>Keahlian</h3>
+                    <ul class="keahlian">
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian Daftar Bernomor -->
+        <section>
+            <div class="dua-daftar">
+                <div>
+                    <h3>Urutan Belajar</h3>
+                    <ol class="urutan">
+                        <li>Mempelajari struktur HTML</li>
+                        <li>Mempelajari tag
